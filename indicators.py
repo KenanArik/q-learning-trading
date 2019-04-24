@@ -34,6 +34,11 @@ def RSI(series, period):
     pd.stats.moments.ewma(d, com=period-1, adjust=False)
     return 100 - 100 / (1 + rs)
 
+def CCI(close, high, low, n, constant): 
+ TP = (high + low + close) / 3 
+ CCI = pd.Series((TP - pd.rolling_mean(TP, n)) / (constant * pd.rolling_std(TP, n)), name = 'CCI_' + str(n)) 
+ return CCI
+
 def get_sma_indicator(price, rolling_mean):
     """Calculate simple moving average indicator, i.e. price / rolling_mean.
 
