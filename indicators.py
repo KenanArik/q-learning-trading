@@ -239,6 +239,8 @@ def align_y_axis(ax1, ax2, minresax1, minresax2):
                                (ax2ylims[1] - ax2ylims[0]) % ax2factor) %
                                ax2factor, 7))
 
+def my_rolling_sharpe(y):
+    return np.sqrt(126) * (y.mean() / y.std()) # 21 days per month X 6 months = 126
 
 if __name__ == "__main__":
     start_date = dt.datetime(2008, 1, 1)
