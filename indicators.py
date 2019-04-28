@@ -242,6 +242,19 @@ def align_y_axis(ax1, ax2, minresax1, minresax2):
 def my_rolling_sharpe(y):
     return np.sqrt(126) * (y.mean() / y.std()) # 21 days per month X 6 months = 126
 
+def swap(arr,i,j):
+    arr[i],arr[j] = arr[j],arr[i]
+
+def zigZag(arr):
+    n = len(arr)
+    for i in range(len(arr)-1):
+        if not i&1:
+            if arr[i] > arr[i+1]:
+                swap(arr,i,i+1)
+        elif arr[i] < arr[i+1]:
+            swap(arr,i,i+1)
+    return arr
+
 if __name__ == "__main__":
     start_date = dt.datetime(2008, 1, 1)
     end_date = dt.datetime(2009, 12, 31)
